@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+// Container for items that Sherlock can appraise.
+
 public class AppraiseSlot : InvSlot {
 
    public Sherlock sherlock;

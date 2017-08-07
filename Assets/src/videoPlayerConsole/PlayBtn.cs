@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+// Button that toggles the playing and paused states of a video player.
+
 public class PlayBtn : ClickableObject {
 
    public VideoPlayerConsole console;

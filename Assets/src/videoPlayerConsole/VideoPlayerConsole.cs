@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 using UnityEngine.EventSystems;
 
+// Main video class that controls video playback state and video display properties.
+
 public class VideoPlayerConsole : MonoBehaviour {
 
 	// ** Video player constants **
@@ -28,9 +30,11 @@ public class VideoPlayerConsole : MonoBehaviour {
 	// Access through the property so TriggerOnce can be reset properly.
 	private EVideoState state = EVideoState.paused;
 
-	// Keep track of when a state has bene triggered.
+	// Keep track of when a state has been triggered.
 	private TriggerOnce triggerOnce = new TriggerOnce(false);
 
+	// Changes the state of the video player.
+	// Also resets the TriggerOnce in the state machine.
 	public EVideoState State{
 		get{
 			return state;
@@ -41,6 +45,7 @@ public class VideoPlayerConsole : MonoBehaviour {
 		}
 	}
 
+	// Initializes the video renderer and other GUI elements.
 	void Start(){
 		RenderTexture rendTex =
 			new RenderTexture(VID_WIDTH, VID_HEIGHT, VID_CDEPTH);
@@ -61,15 +66,18 @@ public class VideoPlayerConsole : MonoBehaviour {
 			FormatTime((int)videoPlayer.time) + " / " + FormatTime((int)videoPlayer.clip.length);
 	}
 
+	// Check the state of the video player state machine.
 	void FixedUpdate(){
 
 		//debugTimeText.text = videoPlayer.time.ToString();
 		//debugFrameText.text = videoPlayer.frame.ToString();
 
+		// Sets the proper state once the video has stopped.
 		if(videoPlayer.time >= videoPlayer.clip.length){
 			State = EVideoState.stopped;
 		}
 
+		// State machine
 		switch(state){
 			case EVideoState.stopped:{
 

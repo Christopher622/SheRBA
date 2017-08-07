@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+// Button that toggles the referenced window visibility.
+
 public class OpenInvBtn : ClickableObject {
 
    public GameObject window;

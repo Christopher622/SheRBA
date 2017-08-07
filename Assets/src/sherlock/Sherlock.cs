@@ -3,11 +3,14 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Handles all of Sherlock's dialogue and triggerable events.
+
 public class Sherlock : MonoBehaviour{
 
    public GameObject speechBubble;
    public Text bubbleText;
 
+   // Displays the dialogue from a specific file.
    public void DoSpeech(string fileName){
       speechBubble.SetActive(true);
       TextAsset text = Resources.Load<TextAsset>("sherlockDialogue/" + fileName);
@@ -15,6 +18,7 @@ public class Sherlock : MonoBehaviour{
       bubbleText.text = text.text;
    }
 
+   // Displays the dialogue from a string.
    public void DoReview(string text){
       speechBubble.SetActive(true);
       bubbleText.text = text;
@@ -24,6 +28,8 @@ public class Sherlock : MonoBehaviour{
       bubbleText.text = "";
    }
 
+   // Iterates through the given list of inventories where Sherlock displays a
+   // specific dialogue for each item and how it was classified.
    public void SubmitEvidence(Inventory[] invList){
 
       string text = "";
@@ -53,6 +59,8 @@ public class Sherlock : MonoBehaviour{
       DoReview(text);
    }
 
+   // Coroutine that displays Sherlock's dialogue one line at a time until the
+   // user gives input to continue. (WIP)
    private IEnumerator DoDialogue(){
       // TODO:
       // Write diaogue routine that displays a line or two, waits for user
